@@ -1,9 +1,9 @@
 pipeline{
     agent any
     stages{
-        stage("useless jenkins"){
+        stage("Clean up with useless jenkins"){
             steps{
-                sh "echo 'hello'"       
+                sh 'docker ps -q | xargs --no-run-if-empty docker stop'      
             }
         }
         stage("more useless"){
