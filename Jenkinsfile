@@ -10,10 +10,11 @@ pipeline{
 				sh 'docker images -q | xargs --no-run-if-empty docker rmi -f'
             }
         }
-        stage("more useless"){
-            steps{
-                sh "echo 'goodbye'"
-            }
+		stage('Show Workspace') {
+			steps {
+				echo "Workspace: ${env.WORKSPACE}"
+				sh 'ls -la'
+			}
         }
 	}
 }
