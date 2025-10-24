@@ -31,7 +31,7 @@ pipeline{
 			}
 		}
 
-		stage("Security Scan") {
+		stage("Security Scan that cause jenkins to kill the server") {
 			steps {
 				sh "trivy fs --format json -o trivy-report.json ."
 			}
