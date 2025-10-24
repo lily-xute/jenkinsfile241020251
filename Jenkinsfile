@@ -32,7 +32,7 @@ pipeline{
 		}
 		stage('run docker iimage') {
 			steps {
-				sh 'docker run -d -p 5500:5500 --network publicnetwork --name flask-app myapp'
+				sh 'docker run -d --network publicnetwork --name flask-app myapp'
 				sh 'docker run -d -p 80:80 --network publicnetwork --name proxy proxy'
 			}
 		}
