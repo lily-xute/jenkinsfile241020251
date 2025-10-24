@@ -30,6 +30,20 @@ pipeline{
 				sh 'docker build -f Dockerfile.nginx -t proxy .'
 			}
 		}
+
+		stage("Security Scan") {
+			steps {
+				sh "trivy fs --format json -o trivy-report.json ."
+			}
+			post {
+				always {
+					// Archive the Trivy report
+					archiveArtifacts artifacts: 'trivy-report.json', onlyIfSuccessful: true
+				}
+			}
+		}
+
+		
 		stage('run docker iimage') {
 			steps {
 				sh 'docker run -d --network publicnetwork --name flask-app myapp'
