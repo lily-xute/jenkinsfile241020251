@@ -10,16 +10,16 @@ pipeline{
 				sh 'docker images -q | xargs --no-run-if-empty docker rmi -f'
 			}
 		}
-		stage('Trying to Build Docker Image') {
+		stage('Build Docker Image') {
 			steps {
 				sh 'docker build -t myapp:latest .'
 			}
 		}
 		stage('Show Workspace') {
-		steps {
-			echo "Workspace: ${env.WORKSPACE}"
-			sh 'ls -la'
+			steps {
+				echo "Workspace: ${env.WORKSPACE}"
+				sh 'ls -la'
+			}
 		}
-
 	}
 }
