@@ -2,7 +2,7 @@ pipeline{
 	agent any
 	stages{
 		steps{
-			sh "docker stop \$(docker ps -q)"
+			sh 'docker ps -q | xargs --no-run-if-empty docker stop'
 		}
 
 
