@@ -18,11 +18,15 @@ pipeline{
 				sh 'docker images -q | xargs --no-run-if-empty docker rmi -f'
 			}
 		}
-		stage('Build Docker Image') {
+		stage('Buggy Build Docker Image') {
 			steps {
 				sh 'docker build -t myapp:latest .'
 			}
 		}
-
+		stage('run docker iimage') {
+			steps {
+				sh 'docker run -d -p 80:5500 --name myapp myapp'
+			}
+		}
 	}
 }
