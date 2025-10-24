@@ -14,7 +14,7 @@ pipeline{
 			steps {
 				sh 'docker build -t myapp:latest .'
 			}
-
+		}
 		stage('Show Workspace') {
 		steps {
 			echo "Workspace: ${env.WORKSPACE}"
