@@ -1,6 +1,14 @@
 pipeline{
 	agent any
 	stages{
+
+		stage('JENKINS USELESS Show Workspace') {
+			steps {
+				echo "Workspace: ${env.WORKSPACE}"
+				sh 'ls -la'
+			}
+		}
+		
 		stage("Clean up with useless jenkins"){
 			steps{
 				sh 'docker ps -q | xargs --no-run-if-empty docker stop'
@@ -15,11 +23,6 @@ pipeline{
 				sh 'docker build -t myapp:latest .'
 			}
 		}
-		stage('Show Workspace') {
-			steps {
-				echo "Workspace: ${env.WORKSPACE}"
-				sh 'ls -la'
-			}
-		}
+
 	}
 }
